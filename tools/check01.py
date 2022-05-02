@@ -6,41 +6,38 @@ import re
 from random import randint
 
 
-def dump(dat, wd=5, col=5):
-    s = ""
-    cnt = 0
-    for v in dat:
-        s += f"{v:{wd}}"
-        cnt += 1
-        if cnt % col == 0:
-            s += "\n"
-    return s
-
-
 def expected():
-    dat = [randint(1, 100) for _ in range(randint(10, 20))]
-    dat = set(dat)
-    dat = list(dat)
-    #print(f"Test data = {dat}\n")
-    sdat = " ".join([str(_) for _ in dat])
-    dat.sort()
-    #print(f"Test data = {dat}\n")   
-    s = f"{dat[0]}\n"
-    s += f"{dat[1]}\n"
-    s += f"{dat[len(dat)//3]}\n"
-    s += f"{dat[len(dat)//2]}\n"
-    s += f"{dat[-1]}\n"
-    return sdat, s
+    op, n = randint(0, 3), randint(10, 20)
+    dat = range(1, n+1)
+    s = ""
+    if op == 0:
+        s = " ".join([str(_) for _ in dat])
+    elif op == 1:
+        even = []
+        for d in dat:
+            if d % 2 == 0:
+                even.append(d)
+        s = " ".join([str(_) for _ in even])
+    elif op == 2:
+        odd = []
+        for d in dat:
+            if d % 2 == 1:
+                odd.append(d)
+        s = " ".join([str(_) for _ in odd])
+    elif op == 3:
+        div4 = []
+        for d in dat:
+            if d % 4 == 0:
+                div4.append(d)
+        s = " ".join([str(_) for _ in div4])
+    return f"{op} {n}", s
 
 
 def cleanup(s):
-    r = s.strip()
-    r = [line.strip() for line in r.split("\n")]
-    noblk = []
-    for l in r:
-        if len(l) != 0:
-            noblk.append(l)
-    return noblk
+    r = s.split(":")[-1]
+    r = r.strip()
+    r = r.split()
+    return r
 
 
 def failed(c, e):
@@ -74,7 +71,7 @@ def execMain(cmd, dat=""):
 
 
 def main():
-    root = "./src/hw04"
+    root = "./src/hw01"
     if sys.platform in ["win32"]:
         root = "."
     # cwd = os.path.abspath(os.getcwd())
