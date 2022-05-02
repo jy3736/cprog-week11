@@ -3,29 +3,62 @@
 
 using namespace std;
 
-int nthNum(int dat[], int len, int n = 0)
+void printAll(int n)
 {
-    // add your code here
+    cout << "All     : ";
+    for (int i = 1; i <= n; i++)
+        cout << setw(4) << i;
 }
 
-// ==============================================
+void printEven(int n)
+{
+    cout << "Even    : ";
+    for (int i = 1; i <= n; i++)
+        if (i % 2 == 0)
+            cout << setw(4) << i;
+}
+
+void printOdd(int n)
+{
+    cout << "Odd     : ";
+    for (int i = 1; i <= n; i++)
+        if (i % 2 != 0)
+            cout << setw(4) << i;
+}
+
+void printDiv4(int n)
+{
+    cout << "Div. 4  : ";
+    for (int i = 1; i <= n; i++)
+        if (i % 4 == 0)
+            cout << setw(4) << i;
+}
+
 // -----vv----- 不得修改『以下』的程式 -----vv-----
-// ==============================================
 
 int main()
 {
-    int dat[100];
-    int cnt = 0;
+    int op, n;
+    cin >> op;
+    cin >> n;
 
-    while (cin >> dat[cnt++])
-        ;
-    cnt--;
-
-    cout << nthNum(dat, cnt, 0) << endl;
-    cout << nthNum(dat, cnt, 1) << endl;
-    cout << nthNum(dat, cnt, cnt / 3) << endl;
-    cout << nthNum(dat, cnt, cnt / 2) << endl;
-    cout << nthNum(dat, cnt, cnt - 1) << endl;
+    switch (op)
+    {
+    case 0:
+        printAll(n);
+        break;
+    case 1:
+        printEven(n);
+        break;
+    case 2:
+        printOdd(n);
+        break;
+    case 3:
+        printDiv4(n);
+        break;
+    }
 
     return 0;
 }
+
+
